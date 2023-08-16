@@ -7,9 +7,12 @@ const port = 3000;
 
 app.use(bodyParser.json());
 const path = require('path');
+const cors = require('cors')
 
 const plantsData = JSON.parse(fs.readFileSync('data/plants.json'));
 const plants = plantsData.data;
+
+app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.get('/plants', (req, res) => {
   res.json(plants);

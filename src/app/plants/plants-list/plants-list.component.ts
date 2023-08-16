@@ -10,6 +10,7 @@ import {
   loadPlants,
   updatePlant,
 } from '../store/plant.actions';
+import { selectPlants } from '../store/plant.selectors';
 
 @Component({
   selector: 'app-plants-list',
@@ -19,11 +20,46 @@ import {
 export class PlantsListComponent implements OnInit {
   plants$: Observable<Plant[]>;
 
-  constructor(private store: Store<{ plants: Plant[] }>) {
-    this.plants$ = store.select('plants');
+  constructor(private store: Store<{ plants: Plant[] }>, public dialog: MatDialog) {
+    // this.store.dispatch(loadPlants());
   }
 
   ngOnInit(): void {
+    this.plants$ = this.store.select(selectPlants);
     this.store.dispatch(loadPlants());
   }
+
+  addPlant(): void {
+    const dialogRef = this.dialog.open(PlantFormComponent, {
+      width: '400px',
+      data: { plant: null }
+    });
+
+    dialogRef.afterClosed().subscribe((result: Plant) => {
+      if (result) {
+        this.store.dispatch(addPlant({ plant: result }));
+      }
+    });
+  }
+
+  editPlant(plant: Plant): void {
+    const dialogRef = this.dialog.open(PlantFormComponent, {
+      width: '400px',
+      data: { plant: { ...plant } }
+    });
+
+    dialogRef.afterClosed().subscribe((result: Plant) => {
+      if (result) {
+        this.store.dispatch(updatePlant({ plant: result }));
+      }
+    });
+  }
+
+  deletePlant(id: number): void {
+    const confirmDelete = window.confirm('Are you sure you want to delete this plant?');
+    if (confirmDelete) {
+      this.store.dispatch(deletePlant({ id }));
+    }
+  }
+
 }

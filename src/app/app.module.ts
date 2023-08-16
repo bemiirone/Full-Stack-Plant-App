@@ -4,7 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { PlantsModule } from './plants/plants.module';
+import { PlantEffects } from './plants/store/plant.effects'; 
+import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { plantReducer } from './plants/store/plant.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,9 +18,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     PlantsModule,
     StoreModule.forRoot({}, {}),
-    BrowserAnimationsModule
+    StoreModule.forFeature('plants', plantReducer),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([PlantEffects]),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

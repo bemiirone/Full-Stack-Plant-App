@@ -1,19 +1,22 @@
 <ng-container *ngIf="plants$ | async as plants">
   <div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Plants List</h1>
-  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    <li *ngFor="let plant of plants" class="bg-white rounded-lg shadow p-4">
-      <img [src]="plant.image" alt="{{ plant.name }}" class="w-32 h-32 object-cover rounded-lg mb-4" />
-      <h2 class="text-xl font-bold">{{ plant.name }}</h2>
-      <p class="text-gray-600">Family: {{ plant.family }}</p>
-      <p class="text-gray-600">Year: {{ plant.year }}</p>
-      <div class="mt-4">
-        <button class="bg-blue-500 text-white rounded px-4 py-2" (click)="editPlant(plant)">Edit</button>
-        <button class="bg-red-500 text-white rounded px-4 py-2 ml-2" (click)="deletePlant(plant.id)">Delete</button>
-      </div>
-    </li>
-  </ul>
-</div>
+    <h1 class="text-2xl font-bold mb-4">Plants List</h1>
+    <div class="mb-4">
+      <button class="bg-green-500 text-white rounded px-4 py-2" (click)="addPlant()">Add Plant</button>
+    </div>
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <li *ngFor="let plant of plants" class="bg-white rounded-lg shadow p-4">
+        <img [src]="plant.image" alt="{{ plant.name }}" class="w-32 h-32 object-cover rounded-lg mb-4" />
+        <h2 class="text-xl font-bold">{{ plant.name }}</h2>
+        <p class="text-gray-600">Family: {{ plant.family }}</p>
+        <p class="text-gray-600">Year: {{ plant.year }}</p>
+        <div class="mt-4">
+          <button class="bg-blue-500 text-white rounded px-4 py-2" (click)="editPlant(plant)">Edit</button>
+          <button class="bg-red-500 text-white rounded px-4 py-2 ml-2" (click)="deletePlant(plant.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>  
 </ng-container>
 
 
