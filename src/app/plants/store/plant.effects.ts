@@ -15,16 +15,10 @@ import {
 export class PlantEffects {
   
   private API_URL = 'http://localhost:3000/plants';
-
-  headerOptions = {
-    headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
-    },
-  };
-
+  
   loadPlants$ = createEffect(() => this.actions$.pipe(
     ofType(loadPlants),
-    mergeMap(() => this.http.get(`${this.API_URL}`, this.headerOptions).pipe(
+    mergeMap(() => this.http.get(`${this.API_URL}`).pipe(
       map((plants: any) => loadPlantsSuccess({ plants })),
       catchError(error => of(loadPlantsFailure({ error })))
     ))

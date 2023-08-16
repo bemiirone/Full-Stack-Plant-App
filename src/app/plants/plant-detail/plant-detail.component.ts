@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable, filter, map } from 'rxjs';
+import { Plant } from '../plant.interface';
+import { selectPlants } from '../store/plant.selectors';
 
 @Component({
   selector: 'app-plant-detail',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlantDetailComponent implements OnInit {
 
-  constructor() { }
+  plant$: Observable<Plant>;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private store: Store<{ plants: Plant[] }>) { }
+
+  ngOnInit(): void {
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.plant$ = this.store.select(selectPlants).pipe(
+      map((plants: Plant[]) => plants.find((plant: Plant) => plant.id === id)),
+      filter((plant: Plant | undefined): plant is Plant => !!plant)
+    );
   }
 
 }

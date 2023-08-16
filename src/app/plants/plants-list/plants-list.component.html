@@ -6,8 +6,11 @@
     </div>
     <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <li *ngFor="let plant of plants" class="bg-white rounded-lg shadow p-4">
-        <img [src]="plant.image" alt="{{ plant.name }}" class="w-32 h-32 object-cover rounded-lg mb-4" />
-        <h2 class="text-xl font-bold">{{ plant.name }}</h2>
+        <a [routerLink]="['/plants', plant.id]">
+          <img [src]="plant.image" alt="{{ plant.name }}" class="w-32 h-32 object-cover rounded-lg mb-4" />
+          <h2 class="text-xl font-bold">{{ plant.name }}</h2>
+        </a>
+        
         <p class="text-gray-600">Family: {{ plant.family }}</p>
         <p class="text-gray-600">Year: {{ plant.year }}</p>
         <div class="mt-4">
