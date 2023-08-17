@@ -1,6 +1,6 @@
 # Plants
 
-A simple Angular app that uses Ngrx for state management. An Express server, serves the data
+A simple Angular app that uses Ngrx for state management. An Express server, serves the data. This is a work in progress.
 
 ## Instructions
 
