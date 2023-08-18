@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PlantsModule } from './plants/plants.module';
 import { PlantEffects } from './plants/store/plant.effects'; 
 import { EffectsModule } from '@ngrx/effects';
@@ -22,6 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     PlantsModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature('plants', plantReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([PlantEffects]),
     BrowserAnimationsModule,

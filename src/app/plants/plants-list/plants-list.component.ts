@@ -21,12 +21,11 @@ export class PlantsListComponent implements OnInit {
   plants$: Observable<Plant[]>;
 
   constructor(private store: Store<{ plants: Plant[] }>, public dialog: MatDialog) {
-    // this.store.dispatch(loadPlants());
   }
 
   ngOnInit(): void {
-    this.plants$ = this.store.select(selectPlants);
     this.store.dispatch(loadPlants());
+    this.plants$ = this.store.select(selectPlants);
   }
 
   addPlant(): void {
