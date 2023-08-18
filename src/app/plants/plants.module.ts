@@ -4,13 +4,17 @@ import { PlantsListComponent } from './plants-list/plants-list.component';
 import { RouterModule } from '@angular/router';
 import { PlantDetailComponent } from './plant-detail/plant-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PlantFormComponent } from './plant-form/plant-form.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [PlantsListComponent, PlantDetailComponent]
+  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent],
 })
-export class PlantsModule { }
+export class PlantsModule {}
