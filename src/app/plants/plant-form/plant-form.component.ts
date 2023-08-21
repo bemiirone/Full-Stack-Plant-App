@@ -33,12 +33,16 @@ export class PlantFormComponent {
   }
 
   onSubmit() {
-    const newPlant: Plant = {
-      id: this.plant ? this.plant.id : 0,
-      ...this.form.value
-    };
+    if (this.form.valid) {
+      const newPlant: Plant = {
+        id: this.plant ? this.plant.id : 0,
+        ...this.form.value
+      };
 
-    this.dialogRef.close(newPlant);
+      this.dialogRef.close(newPlant);
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   closeDialog() {
