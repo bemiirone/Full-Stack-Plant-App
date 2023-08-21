@@ -6,6 +6,7 @@ import { PlantDetailComponent } from './plant-detail/plant-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlantFormComponent } from './plant-form/plant-form.component';
+import { PlantFilterComponent } from './plant-filter/plant-filter.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PlantFormComponent } from './plant-form/plant-form.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent],
+  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent, PlantFilterComponent],
 })
 export class PlantsModule {}
