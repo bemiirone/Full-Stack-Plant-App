@@ -44,6 +44,10 @@ app.get('/plants/:id', (req, res) => {
 app.post('/plants', validatePlant, handleValidationErrors, (req, res) => {
   const newPlant = req.body;
   const existingPlant = plants.find(p => p.id === newPlant.id);
+  // Generate a unique ID by incrementing the maximum ID of the existing plants
+  const maxId = Math.max(...plants.map(p => p.id));
+  newPlant.id = maxId + 1;
+  
   if (existingPlant) {
     return res.status(400).send('A plant with the same ID already exists');
   }
