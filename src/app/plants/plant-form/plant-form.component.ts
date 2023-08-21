@@ -10,9 +10,8 @@ interface DialogData {
 @Component({
   selector: 'app-plant-form',
   templateUrl: './plant-form.component.html',
-  styleUrls: ['./plant-form.component.css']
+  styleUrls: ['./plant-form.component.css'],
 })
-
 export class PlantFormComponent {
   form: FormGroup;
   plant: Plant | null;
@@ -28,7 +27,7 @@ export class PlantFormComponent {
       family: [this.plant ? this.plant.family : '', Validators.required],
       year: [this.plant ? this.plant.year : '', Validators.required],
       slug: [this.plant ? this.plant.slug : '', Validators.required],
-      image: [this.plant ? this.plant.image : '']
+      image: [this.plant ? this.plant.image : 'assets/plant-placeholder.jpg'],
     });
   }
 
@@ -36,7 +35,7 @@ export class PlantFormComponent {
     if (this.form.valid) {
       const newPlant: Plant = {
         id: this.plant ? this.plant.id : 0,
-        ...this.form.value
+        ...this.form.value,
       };
 
       this.dialogRef.close(newPlant);
