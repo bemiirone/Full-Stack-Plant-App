@@ -11,6 +11,7 @@ import {
   updatePlant,
 } from '../store/plant.actions';
 import { selectPlants } from '../store/plant.selectors';
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-plants-list',
@@ -56,10 +57,16 @@ export class PlantsListComponent implements OnInit {
   }
 
   deletePlant(id: number): void {
-    const confirmDelete = window.confirm('Are you sure you want to delete this plant?');
-    if (confirmDelete) {
-      this.store.dispatch(deletePlant({ id }));
-    }
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Are you sure you want to delete this plant?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(deletePlant({ id }));
+      }
+    });
   }
 
   applyFilter(filter: string): void {
