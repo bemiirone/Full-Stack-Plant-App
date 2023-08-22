@@ -9,7 +9,7 @@ The Plants app is a single-page application that provides functionality to manag
 - **Add & Edit Plant**: The app offers functionalities to add new plants and update the details of existing ones.
 - **Delete Plant**: Any plant can be removed from the collection.
 - **Search & Filter**: Users can filter the list of plants based on name, family, or year.
-- **Confirmation Dialogs**: Before performing delete operations, users are prompted with a confirmation dialog to avoid accidental deletions.
+- **Dialog Modals**: Used for Add, Edit and delete operations.
 
 ## Libraries and Tools
 
