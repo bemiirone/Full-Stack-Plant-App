@@ -14,10 +14,12 @@ The Plants app is a single-page application that provides functionality to manag
 ## Libraries and Tools
 
 - **Angular**: The primary framework used for building the application.
-- **ngrx**: State management is done using NgRx, which includes actions, reducers, effects, and selectors.
+- **TypeScript**: The building bocks for this app.
+- **Rxjs**: Used to handle state management and services.
+- **Ngrx**: State management is done using NgRx, which includes actions, reducers, effects, and selectors.
 - **Angular Material**: This is used for designing the UI components, such as dialogs.
-- **Jasmine & Karma**: For writing and running unit tests.
 - **Tailwind Css**: For responsive styling
+- **Jasmine & Karma**: For writing and running unit tests.
 
 ## Backend
 
