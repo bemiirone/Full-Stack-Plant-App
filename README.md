@@ -1,6 +1,27 @@
-# Plants
+# Plants App
 
-A simple Angular app that uses Ngrx for state management. An Express server, serves the data. This is a work in progress.
+The Plants app is a single-page application that provides functionality to manage and display a collection of plants.
+
+## Features
+
+- **Plant Listing**: Users can view a list of all available plants.
+- **Plant Details**: Each plant can be clicked on to view its detailed information.
+- **Add & Edit Plant**: The app offers functionalities to add new plants and update the details of existing ones.
+- **Delete Plant**: Any plant can be removed from the collection.
+- **Search & Filter**: Users can filter the list of plants based on name, family, or year.
+- **Confirmation Dialogs**: Before performing delete operations, users are prompted with a confirmation dialog to avoid accidental deletions.
+
+## Libraries and Tools
+
+- **Angular**: The primary framework used for building the application.
+- **ngrx**: State management is done using NgRx, which includes actions, reducers, effects, and selectors.
+- **Angular Material**: This is used for designing the UI components, such as dialogs.
+- **Jasmine & Karma**: For writing and running unit tests.
+- **Tailwind Css**: For responsive styling
+
+## Backend
+
+The app communicates with a backend server that provides CRUD operations for the plants. This server is built using `Express.js` and serves data from a static JSON file.
 
 ## Instructions
 
