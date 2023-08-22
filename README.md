@@ -13,7 +13,7 @@ The Plants app is a single-page application that provides functionality to manag
 
 ## Libraries and Tools
 
-- **Angular**: The primary framework used for building the application.
+- **Angular 16**: The primary framework used for building the application.
 - **TypeScript**: The building bocks for this app.
 - **Rxjs**: Used to handle state management and services.
 - **Ngrx**: State management is done using NgRx, which includes actions, reducers, effects, and selectors.
