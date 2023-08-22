@@ -22,7 +22,4 @@ export class PlantDetailComponent implements OnInit {
       filter((plant: Plant | undefined): plant is Plant => !!plant)
     );
   }
-
-  
-
 }
