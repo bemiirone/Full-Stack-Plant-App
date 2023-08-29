@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { Plant } from '../plant.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlantFormComponent } from '../plant-form/plant-form.component';
 import {
   addPlant,
@@ -22,20 +22,25 @@ import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/co
 export class PlantsListComponent implements OnInit {
   plants$: Observable<Plant[]>;
   filter = '';
+  currentPage = 1;
+  plantsPerPage = 8;
 
   constructor(
     private store: Store<{ plants: Plant[] }>,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const limit = params['limit'] ? +params['limit'] : undefined;
-      const offset = params['offset'] ? +params['offset'] : undefined;
-      
-      this.store.dispatch(loadPlants({ limit, offset }));
-      this.plants$ = this.store.select(selectPlants);
+    this.route.queryParams.subscribe((params) => {
+      if (params['limit']) {
+        this.plantsPerPage = +params['limit'];
+      }
+      if (params['offset']) {
+        this.currentPage = +params['offset'] / this.plantsPerPage + 1;
+      }
+      this.loadPlantsForPage(this.currentPage);
     });
   }
 
@@ -93,4 +98,30 @@ export class PlantsListComponent implements OnInit {
         )
       );
   }
+
+  loadPlantsForPage(page: number): void {
+    const offset = (page - 1) * this.plantsPerPage;
+    const limit = this.plantsPerPage;
+
+    this.store.dispatch(loadPlants({ limit, offset }));
+    this.plants$ = this.store.select(selectPlants);
+  }
+
+navigatePage(direction: 'next' | 'prev'): void {
+  let newOffset: number;
+
+  if (direction === 'next') {
+      newOffset = this.currentPage * this.plantsPerPage;
+  } else {
+      newOffset = (this.currentPage - 2) * this.plantsPerPage;
+  }
+
+  this.router.navigate([], {
+    relativeTo: this.route,
+    queryParams: { limit: this.plantsPerPage, offset: newOffset },
+    queryParamsHandling: 'merge',
+  });
+}
+
+
 }

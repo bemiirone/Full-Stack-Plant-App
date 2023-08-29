@@ -1,39 +1,34 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-plant-paginator',
   templateUrl: './plant-paginator.component.html',
-  styleUrls: ['./plant-paginator.component.css']
+  styleUrls: ['./plant-paginator.component.scss']
 })
 export class PlantPaginatorComponent {
-  @Input() totalPlants: number = 0;
-  @Input() plantsPerPage: number = 10;
+
+  @Input() totalPlants = 0;
+  @Input() plantsPerPage = 10;
+  @Input() currentPage = 1;
   @Output() pageChange = new EventEmitter<number>();
+  @Output() nextPage = new EventEmitter<void>();
+  @Output() prevPage = new EventEmitter<void>();
 
-  currentPage: number = 1;
-  showAll: boolean = false;
-
-  onPrevious(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.pageChange.emit(this.currentPage);
-    }
-  }
-
-  onNext(): void {
-    if (this.currentPage < this.totalPages()) {
-      this.currentPage++;
-      this.pageChange.emit(this.currentPage);
-    }
-  }
-
-  onShowAllToggle(): void {
-    this.showAll = !this.showAll;
-    this.pageChange.emit(this.showAll ? 0 : this.currentPage);
-  }
-
-  totalPages(): number {
+  get totalPages(): number {
     return Math.ceil(this.totalPlants / this.plantsPerPage);
   }
-}
 
+  isLastPage(): boolean {
+    return this.totalPlants < this.plantsPerPage
+  }
+
+  onNextPage(): void {
+    this.currentPage++;
+    this.nextPage.emit();
+  }
+
+  onPrevPage(): void {
+    this.currentPage--;
+    this.prevPage.emit();
+  }
+}
