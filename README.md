@@ -10,6 +10,7 @@ The Plants app is a single-page application that provides functionality to manag
 - **Delete Plant**: Any plant can be removed from the collection.
 - **Search & Filter**: Users can filter the list of plants based on name, family, or year.
 - **Dialog Modals**: Used for Add, Edit and Delete operations.
+- **Pagination**: For easier navigation of the plants list
 
 ## Libraries and Tools
 
