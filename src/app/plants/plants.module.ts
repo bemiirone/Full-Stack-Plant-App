@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlantFormComponent } from './plant-form/plant-form.component';
 import { PlantFilterComponent } from './plant-filter/plant-filter.component';
+import { PlantPaginatorComponent } from './plant-paginator/plant-paginator.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { PlantFilterComponent } from './plant-filter/plant-filter.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent, PlantFilterComponent],
+  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent, PlantFilterComponent, PlantPaginatorComponent],
 })
 export class PlantsModule {}

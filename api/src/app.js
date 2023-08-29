@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const app = express();
 const port = 3000;
-const plantsData = JSON.parse(fs.readFileSync('data/plants.json'));
+const plantsData = JSON.parse(fs.readFileSync('./data/plants.json'));
 const plants = plantsData.data;
 
 const validatePlant = [
@@ -29,7 +29,11 @@ app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.get('/plants', (req, res) => {
-  res.json(plants);
+  const limit = req.query.limit ? parseInt(req.query.limit) : plants.length;
+  const offset = parseInt(req.query.offset) || 0;
+
+  const paginatedPlants = plants.slice(offset, offset + limit);
+  res.json(paginatedPlants);
 });
 
 app.get('/plants/:id', (req, res) => {

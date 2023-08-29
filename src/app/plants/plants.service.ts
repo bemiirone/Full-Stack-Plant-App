@@ -12,8 +12,15 @@ export class PlantsService {
 
   constructor(private http: HttpClient) { }
 
-  getPlants(): Observable<Plant[]> {
-    return this.http.get<Plant[]>(this.apiUrl);
+  getPlants(limit?: number, offset?: number): Observable<Plant[]> {
+    let params: { [key: string]: string } = {};
+    if (limit !== undefined) {
+      params['limit'] = limit.toString();
+    }
+    if (offset !== undefined) {
+      params['offset'] = offset.toString();
+    }
+    return this.http.get<Plant[]>(this.apiUrl, { params });
   }
 
   getPlant(id: number): Observable<Plant> {

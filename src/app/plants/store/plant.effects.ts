@@ -18,7 +18,7 @@ export class PlantEffects {
 
   loadPlants$ = createEffect(() => this.actions$.pipe(
     ofType(loadPlants),
-    mergeMap(() => this.plantsService.getPlants().pipe(
+    mergeMap(action => this.plantsService.getPlants(action.limit, action.offset).pipe(
       map((plants: any) => loadPlantsSuccess({ plants })),
       catchError(error => of(loadPlantsFailure({ error })))
     ))

@@ -1,7 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { Plant } from '../plant.interface';
 
-export const loadPlants = createAction('[Plant] Load Plants');
+export const loadPlants = createAction(
+  '[Plant] Load Plants',
+  props<{ limit?: number; offset?: number }>()
+);
 
 export const loadPlantsSuccess = createAction(
   '[Plant] Load Plants Success',
