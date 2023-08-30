@@ -23,8 +23,8 @@
     </ul>
     <app-paginator 
     [currentPage]="currentPage"
-    [plantsPerPage]="plantsPerPage"
-    [totalPlants]="(plants$ | async)?.length ?? 0"
+    [itemsPerPage]="plantsPerPage"
+    [totalItems]="(plants$ | async)?.length ?? 0"
     (nextPage)="navigatePage('next')" 
     (prevPage)="navigatePage('prev')">
     </app-paginator>

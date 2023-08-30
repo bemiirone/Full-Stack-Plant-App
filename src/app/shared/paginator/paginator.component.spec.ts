@@ -27,7 +27,7 @@ describe('PaginatorComponent', () => {
 
   it('should emit nextPage event when onNextPage is called and not on the last page', () => {
     spyOn(component.nextPage, 'emit');
-    component.totalPlants = 20; // Ensure it's not the last page
+    component.totalItems = 20; // Ensure it's not the last page
     component.onNextPage();
     expect(component.nextPage.emit).toHaveBeenCalled();
 });

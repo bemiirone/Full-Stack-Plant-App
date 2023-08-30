@@ -7,19 +7,19 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PaginatorComponent {
 
-  @Input() totalPlants = 0;
-  @Input() plantsPerPage = 10;
+  @Input() totalItems = 0;
+  @Input() itemsPerPage = 10;
   @Input() currentPage = 1;
   @Output() pageChange = new EventEmitter<number>();
   @Output() nextPage = new EventEmitter<void>();
   @Output() prevPage = new EventEmitter<void>();
 
   get totalPages(): number {
-    return Math.ceil(this.totalPlants / this.plantsPerPage);
+    return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
   isLastPage(): boolean {
-    return this.totalPlants < this.plantsPerPage
+    return this.totalItems < this.itemsPerPage
   }
 
   onNextPage(): void {
