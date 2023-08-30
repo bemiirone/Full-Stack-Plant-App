@@ -27,7 +27,7 @@ describe('PlantReducer', () => {
 
   describe('loadPlants action', () => {
     it('should set loading to true', () => {
-      const action = loadPlants();
+      const action = loadPlants({ limit: 10, offset: 0 });
       const result = reducer(initialState, action);
 
       expect(result.loading).toBe(true);

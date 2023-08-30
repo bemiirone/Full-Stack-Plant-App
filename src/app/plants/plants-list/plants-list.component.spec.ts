@@ -7,6 +7,9 @@ import { Plant } from '../plant.interface';
 import { deletePlant, loadPlants, updatePlant } from '../store/plant.actions';
 import { PlantFilterComponent } from '../plant-filter/plant-filter.component';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { PlantPaginatorComponent } from '../plant-paginator/plant-paginator.component';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 describe('PlantsListComponent', () => {
   let component: PlantsListComponent;
@@ -26,13 +29,18 @@ describe('PlantsListComponent', () => {
       }),
     };
 
+    const activatedRouteMock = {
+      queryParams: of({ limit: 10, offset: 0 })
+    };
+
     const dialogMock = { ...defaultDialogMock, ...dialogMockValue };
 
     return TestBed.configureTestingModule({
-      declarations: [PlantsListComponent, PlantFilterComponent],
+      declarations: [PlantsListComponent, PlantFilterComponent, PaginatorComponent],
       providers: [
         { provide: Store, useValue: storeMock },
         { provide: MatDialog, useValue: dialogMock },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
       ],
       imports: [FormsModule],
     }).compileComponents();
@@ -51,9 +59,9 @@ describe('PlantsListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch loadPlants on init', () => {
+  it('should dispatch loadPlants on init',  () => {
     component.ngOnInit();
-    expect(store.dispatch).toHaveBeenCalledWith(loadPlants());
+    expect(store.dispatch).toHaveBeenCalledWith(loadPlants({ limit: 10, offset: 0 }));
   });
 
   it('should open dialog on addPlant', () => {

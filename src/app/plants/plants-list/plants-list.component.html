@@ -21,14 +21,13 @@
         </div>
       </li>
     </ul>
-    <app-plant-paginator 
+    <app-paginator 
     [currentPage]="currentPage"
     [plantsPerPage]="plantsPerPage"
     [totalPlants]="(plants$ | async)?.length ?? 0"
     (nextPage)="navigatePage('next')" 
-    (prevPage)="navigatePage('prev')"
-    >
-    </app-plant-paginator>
+    (prevPage)="navigatePage('prev')">
+    </app-paginator>
 
   </div>  
 </ng-container>

@@ -34,7 +34,7 @@ describe('ConfirmationDialogComponent', () => {
   it('should display the provided message', () => {
     const nativeElement = fixture.nativeElement;
     const messageElement = nativeElement.querySelector('p');
-    expect(messageElement.textContent).toContain('Are you sure you want to proceed with this action?');
+    expect(messageElement.textContent).toContain('Are you sure you want to delete this item?');
   });
 
   it('should close with true when onConfirm is called', () => {

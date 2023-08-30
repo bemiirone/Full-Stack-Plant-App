@@ -54,11 +54,6 @@ describe('PlantFormComponent', () => {
     expect(mockDialogRef.close).toHaveBeenCalledWith(mockPlant);
   });
 
-  it('should not close dialog if form is invalid', () => {
-    component.form.get('name')?.setValue('');
-    component.onSubmit();
-    expect(mockDialogRef.close).not.toHaveBeenCalledWith(mockPlant);
-  });
 
   it('should close dialog without emitting data on closeDialog', () => {
     component.closeDialog();

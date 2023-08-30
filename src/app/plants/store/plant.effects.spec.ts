@@ -34,7 +34,7 @@ describe('PlantEffects', () => {
     const mockPlants = [{ id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
     plantsService.getPlants.and.returnValue(of(mockPlants));
 
-    actions$ = of(loadPlants());
+    actions$ = of(loadPlants({ limit: 10, offset: 0 }));
 
     effects.loadPlants$.subscribe(action => {
       expect(action).toEqual(loadPlantsSuccess({ plants: mockPlants }));
@@ -44,7 +44,7 @@ describe('PlantEffects', () => {
   it('should dispatch loadPlantsFailure on error', () => {
     plantsService.getPlants.and.returnValue(throwError('error'));
 
-    actions$ = of(loadPlants());
+    actions$ = of(loadPlants({ limit: 10, offset: 0 }));
 
     effects.loadPlants$.subscribe(action => {
       expect(action).toEqual(loadPlantsFailure({ error: 'error' }));
@@ -56,7 +56,7 @@ describe('PlantEffects', () => {
       const mockPlants = [{ id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
       plantsService.getPlants.and.returnValue(of(mockPlants));
 
-      actions$ = of(loadPlants());
+      actions$ = of(loadPlants({ limit: 10, offset: 0 }));
 
       effects.loadPlants$.subscribe(action => {
         expect(action).toEqual(loadPlantsSuccess({ plants: mockPlants }));
@@ -66,7 +66,7 @@ describe('PlantEffects', () => {
     it('should dispatch loadPlantsFailure on error', () => {
       plantsService.getPlants.and.returnValue(throwError('error'));
 
-      actions$ = of(loadPlants());
+      actions$ = of(loadPlants({ limit: 10, offset: 0 }));
 
       effects.loadPlants$.subscribe(action => {
         expect(action).toEqual(loadPlantsFailure({ error: 'error' }));
