@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlantFormComponent } from './plant-form/plant-form.component';
 import { PlantFilterComponent } from './plant-filter/plant-filter.component';
 import { PlantPaginatorComponent } from './plant-paginator/plant-paginator.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,14 @@ import { PlantPaginatorComponent } from './plant-paginator/plant-paginator.compo
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule
   ],
-  declarations: [PlantsListComponent, PlantDetailComponent, PlantFormComponent, PlantFilterComponent, PlantPaginatorComponent],
+  declarations: [
+    PlantsListComponent,
+    PlantDetailComponent,
+    PlantFormComponent,
+    PlantFilterComponent,
+    PlantPaginatorComponent,
+  ],
 })
 export class PlantsModule {}

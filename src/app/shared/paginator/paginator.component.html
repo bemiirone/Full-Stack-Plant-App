@@ -1,0 +1,18 @@
+<div class="flex justify-center items-center my-4">
+  <button
+          [disabled]="currentPage === 1"
+          class="px-3 py-1 border border-gray-300 rounded-l-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed prev-button"
+          (click)="onPrevPage()">
+          Previous
+      </button>
+      <div class="px-4 py-1 bg-gray-100 border-t border-b border-gray-300">
+          {{currentPage}}
+      </div>
+      <button
+          class="px-3 py-1 border border-gray-300 rounded-r-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed next-button"
+          (click)="onNextPage()"
+          [disabled]="isLastPage()">
+          Next
+    </button>
+</div>
+
