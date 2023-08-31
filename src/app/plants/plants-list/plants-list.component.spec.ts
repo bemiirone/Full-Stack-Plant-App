@@ -8,7 +8,6 @@ import { deletePlant, loadPlants, updatePlant } from '../store/plant.actions';
 import { PlantFilterComponent } from '../plant-filter/plant-filter.component';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PlantPaginatorComponent } from '../plant-paginator/plant-paginator.component';
 import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 describe('PlantsListComponent', () => {
