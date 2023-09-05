@@ -10,6 +10,11 @@ const port = 3000;
 const plantsData = JSON.parse(fs.readFileSync('./data/plants.json'));
 const plants = plantsData.data;
 
+const UserData = JSON.parse(fs.readFileSync('./data/users.json'));
+const users = UserData.data;
+
+// Plants routes
+
 const validatePlant = [
   check('name').isLength({ min: 1 }).withMessage('Name is required'),
   check('family').isLength({ min: 1 }).withMessage('Family is required'),
@@ -48,7 +53,6 @@ app.get('/plants/:id', (req, res) => {
 app.post('/plants', validatePlant, handleValidationErrors, (req, res) => {
   const newPlant = req.body;
   const existingPlant = plants.find(p => p.id === newPlant.id);
-  // Generate a unique ID by incrementing the maximum ID of the existing plants
   const maxId = Math.max(...plants.map(p => p.id));
   newPlant.id = maxId + 1;
   
@@ -78,6 +82,31 @@ app.delete('/plants/:id', (req, res) => {
   } else {
     res.status(404).send('Plant not found');
   }
+});
+
+// Users routes
+app.get('/users', (req, res) => {
+      if (users.length === 0) {
+          res.status(500).send({ error: 'Failed to load users' });
+          return;
+      }
+      res.send(users);
+});
+
+app.get('/users/:id', (req, res) => {
+  fs.readFile('users.json', 'utf8', (err, data) => {
+      if (err) {
+          res.status(500).send({ error: 'Failed to load user' });
+          return;
+      }
+      const users = JSON.parse(data).data;
+      const user = users.find(u => u.id === parseInt(req.params.id, 10));
+      if (!user) {
+          res.status(404).send({ error: 'User not found' });
+          return;
+      }
+      res.send(user);
+  });
 });
 
 app.listen(port, () => {
