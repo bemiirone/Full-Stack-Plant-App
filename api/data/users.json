@@ -94,30 +94,6 @@
       "plant_id": [
         227114
       ]
-    },
-    {
-      "id": 9,
-      "name": "Glenna Reichert",
-      "picture_url": "https://images.unsplash.com/photo-1521146764736-56c929d59c83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      "email": "Chaim_McDermott@dana.io",
-      "password": "test9",
-      "admin": false,
-      "plant_id": [
-        262017,
-        109482
-      ]
-    },
-    {
-      "id": 10,
-      "name": "Clementina DuBuque",
-      "picture_url": "https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",
-      "email": "Rey.Padberg@karina.biz",
-      "password": "test10",
-      "admin": false,
-      "plant_id": [
-        227114,
-        109482
-      ]
     }
   ]
 }
