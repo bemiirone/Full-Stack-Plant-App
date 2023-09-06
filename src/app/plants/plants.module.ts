@@ -8,6 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlantFormComponent } from './plant-form/plant-form.component';
 import { PlantFilterComponent } from './plant-filter/plant-filter.component';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { plantReducer } from './store/plant.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PlantEffects } from './store/plant.effects';
 
 @NgModule({
   imports: [
@@ -16,7 +20,9 @@ import { SharedModule } from '../shared/shared.module';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('plants', plantReducer),
+    EffectsModule.forFeature([PlantEffects]),
   ],
   declarations: [
     PlantsListComponent,
