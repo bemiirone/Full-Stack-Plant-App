@@ -2,7 +2,7 @@
   "data": [
     {
       "id": 1,
-      "name": "Ben o'bro",
+      "name": "Ben Brown",
       "picture_url": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1986&q=80",
       "email": "ben@gmail.com",
       "password": "test1",

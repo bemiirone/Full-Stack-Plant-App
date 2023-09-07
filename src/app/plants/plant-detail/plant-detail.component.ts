@@ -14,7 +14,7 @@ export class PlantDetailComponent implements OnInit {
 
   plant$: Observable<Plant>;
 
-  constructor(private route: ActivatedRoute, private store: Store<{ plants: Plant[] }>) { }
+  constructor(private route: ActivatedRoute, private store: Store) { }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')!;

@@ -26,7 +26,7 @@ export class PlantsListComponent implements OnInit {
   plantsPerPage = 8;
 
   constructor(
-    private store: Store<{ plants: Plant[] }>,
+    private store: Store,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router
