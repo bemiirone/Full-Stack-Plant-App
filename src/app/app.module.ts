@@ -23,7 +23,7 @@ import { UsersModule } from './users/users.module';
     HttpClientModule,
     PlantsModule,
     UsersModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
