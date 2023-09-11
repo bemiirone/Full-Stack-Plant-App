@@ -6,6 +6,7 @@ import { PlantFormComponent } from './plants/plant-form/plant-form.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { PlantsResolverService } from './plants/plants-resolver.service';
+import { UserResolverService } from './users/user.resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plants', pathMatch: 'full' },
@@ -17,7 +18,10 @@ const routes: Routes = [
   { 
     path: 'users/:id', 
     component: UserDetailComponent, 
-    resolve: { plants: PlantsResolverService } 
+    resolve: { 
+      plants: PlantsResolverService, 
+      user: UserResolverService 
+    } 
   },
 ];
 

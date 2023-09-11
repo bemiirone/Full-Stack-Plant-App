@@ -22,6 +22,7 @@ export class PlantsResolverService implements Resolve<Plant[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plant[]> {
     return this.store.select(selectPlants).pipe(
         take(1),
+        tap(plants => console.log('plants', plants)),
         switchMap(plants => {
             if (plants && plants.length > 0) {
                 return of(plants);

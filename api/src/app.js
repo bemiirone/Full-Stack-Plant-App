@@ -9,7 +9,6 @@ const app = express();
 const port = 3000;
 const plantsData = JSON.parse(fs.readFileSync('./data/plants.json'));
 const plants = plantsData.data;
-
 const UserData = JSON.parse(fs.readFileSync('./data/users.json'));
 const users = UserData.data;
 
@@ -94,19 +93,12 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/users/:id', (req, res) => {
-  fs.readFile('users.json', 'utf8', (err, data) => {
-      if (err) {
-          res.status(500).send({ error: 'Failed to load user' });
-          return;
-      }
-      const users = JSON.parse(data).data;
-      const user = users.find(u => u.id === parseInt(req.params.id, 10));
-      if (!user) {
-          res.status(404).send({ error: 'User not found' });
-          return;
-      }
-      res.send(user);
-  });
+  const user = users.find(u => u.id === parseInt(req.params.id));
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).send('User not found');
+  }
 });
 
 app.listen(port, () => {

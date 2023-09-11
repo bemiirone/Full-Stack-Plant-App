@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { PlantsResolverService } from './plants/plants-resolver.service';
+import { UserResolverService } from './users/user.resolver.service';
 
 
 @NgModule({
@@ -32,7 +33,10 @@ import { PlantsResolverService } from './plants/plants-resolver.service';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [PlantsResolverService],
+  providers: [
+    PlantsResolverService,
+    UserResolverService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
