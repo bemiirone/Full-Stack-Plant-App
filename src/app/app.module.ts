@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { PlantsResolverService } from './plants/plants-resolver.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { UsersModule } from './users/users.module';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [PlantsResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
