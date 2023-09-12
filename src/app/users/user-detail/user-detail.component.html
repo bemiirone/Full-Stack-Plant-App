@@ -3,9 +3,11 @@
     <img [src]="user.picture_url" alt="{{ user.name }}" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
     <h2 class="text-xl font-bold text-center">{{ user.name }}</h2>
   </div>
-  <ng-container *ngIf="plants$ | async as plants">
+  <ng-container *ngIf="plants$ | async as plants"> 
+    <h3 class="text-xl font-bold mb-4 text-center"> Plant collection</h3>
     <div *ngIf="plants.length; else noPlantsTemplate" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <div *ngFor="let plant of plants" class="bg-white rounded-lg shadow p-4">
+     
+      <div *ngFor="let plant of plants" class="bg-grey-200  rounded-lg shadow p-4">
         <a [routerLink]="['/plants', plant.id]">
           <img [src]="plant.image" alt="{{ plant.name }}" class="w-32 h-32 object-cover rounded-lg mb-4 mx-auto" />
           <h2 class="text-xl font-bold text-center">{{ plant.name }}</h2>

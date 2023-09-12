@@ -2,31 +2,47 @@ import { of, throwError } from 'rxjs';
 import { Plant } from './plant.interface';
 import { PlantResolverService } from './plant.resolver.service';
 import { loadPlant } from './store/plant.actions';
+import { TestBed } from '@angular/core/testing';
+import { PlantsService } from './plants.service';
+import { Store } from '@ngrx/store';
 
-xdescribe('PlantResolverService', () => {
+describe('PlantResolverService', () => {
   let resolver: PlantResolverService;
-  let mockStore: any;
-  let mockPlantsService: any;
-
-  const dummyPlant: Plant = {
+  const mockPlant: Plant = {
     id: 1,
     name: 'Plant A',
     family: 'Family A',
     image: 'image-url',
     year: 2020
   };
+  const mockStore = {
+    select: jasmine.createSpy('select').and.returnValue(of(mockPlant)),
+    dispatch: jasmine.createSpy('dispatch'),
+  };
+
+  const mockPlantsService = {
+    getPlantById: jasmine.createSpy('getPlantById').and.returnValue(of(mockPlant))
+  };
+
+
 
   beforeEach(() => {
-    mockStore = jasmine.createSpyObj(['select', 'dispatch']);
-    mockPlantsService = jasmine.createSpyObj(['getPlantById']);
-    resolver = new PlantResolverService(mockStore, mockPlantsService);
+    TestBed.configureTestingModule({
+      providers: [
+        PlantResolverService,
+        { provide: PlantsService, useValue: mockPlantsService },
+        { provide: Store, useValue: mockStore },
+      ],
+    });
+
+    resolver = TestBed.inject(PlantResolverService);
   });
 
   it('should retrieve plant from store if it exists', (done) => {
-    mockStore.select.and.returnValue(of(dummyPlant));
+    mockStore.select.and.returnValue(of(mockPlant));
 
     resolver.resolve({ params: { id: '1' } } as any, {} as any).subscribe(plant => {
-      expect(plant).toEqual(dummyPlant);
+      expect(plant).toEqual(mockPlant);
       done();
     });
   });
@@ -41,10 +57,10 @@ xdescribe('PlantResolverService', () => {
 
   it('should fetch plant from API if not in store and API call is successful', (done) => {
     mockStore.select.and.returnValue(of(null));
-    mockPlantsService.getPlantById.and.returnValue(of(dummyPlant));
+    mockPlantsService.getPlantById.and.returnValue(of(mockPlant));
 
     resolver.resolve({ params: { id: '1' } } as any, {} as any).subscribe(plant => {
-      expect(plant).toEqual(dummyPlant);
+      expect(plant).toEqual(mockPlant);
       done();
     });
   });
