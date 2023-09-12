@@ -68,7 +68,7 @@ describe('PlantsService', () => {
       image: 'test.jpg',
     };
 
-    service.getPlant(1).subscribe((plant) => {
+    service.getPlantById(1).subscribe((plant) => {
       expect(plant).toEqual(dummyPlant);
     });
 

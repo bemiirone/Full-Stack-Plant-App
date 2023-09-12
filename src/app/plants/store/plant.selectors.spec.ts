@@ -27,7 +27,7 @@ describe('PlantSelectors', () => {
 
     describe('selectPlant', () => {
       it('should return a single plant based on its ID', () => {
-          const result = fromPlantSelectors.selectPlant.projector(initialState, { id: 1 });
+          const result = fromPlantSelectors.selectPlantById.projector(initialState, { id: 1 });
           expect(result).toEqual(initialState.plants[0]);
       });
   });

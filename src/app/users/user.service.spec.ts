@@ -1,16 +1,90 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from './user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
-describe('Service: User', () => {
+describe('UserService', () => {
+  let service: UserService;
+  let httpMock: HttpTestingController;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [UserService]
     });
+    service = TestBed.inject(UserService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should ...', inject([UserService], (service: UserService) => {
+  afterEach(() => {
+    httpMock.verify(); // Make sure that there are no outstanding requests.
+  });
+
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
+
+  it('should retrieve all users via GET', () => {
+    const dummyUsers = [
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        picture_url: 'http://example.com/john.jpg',
+        password: 'password123',
+        admin: false,
+        plant_id: [101, 102]
+      },
+      {
+        id: 2,
+        name: 'Jane Doe',
+        email: 'jane.doe@example.com',
+        picture_url: 'http://example.com/john.jpg',
+        password: 'password123',
+        admin: false,
+        plant_id: [101, 102]
+      }
+    ];
+
+    service.getUsers().subscribe(users => {
+      expect(users.length).toBe(2);
+      expect(users).toEqual(dummyUsers);
+    });
+
+    const request = httpMock.expectOne(service['apiUrl']);
+    expect(request.request.method).toBe('GET');
+    request.flush(dummyUsers);
+  });
+
+  it('should retrieve a user by id via GET', () => {
+    const dummyUser = {
+      id: 1,
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      picture_url: 'http://example.com/john.jpg',
+      password: 'password123',
+      admin: false,
+      plant_id: [101, 102]
+    };
+
+    service.getUserById(1).subscribe(user => {
+      expect(user).toEqual(dummyUser);
+    });
+
+    const request = httpMock.expectOne(`${service['apiUrl']}/1`);
+    expect(request.request.method).toBe('GET');
+    request.flush(dummyUser);
+  });
+
+  it('should handle error on getUsers', () => {
+    service.getUsers().subscribe(
+      () => fail('Should have failed with 500 server error'),
+      (error: Error) => {
+        expect(error.message).toContain('Something bad happened');
+      }
+    );
+
+    const request = httpMock.expectOne(service['apiUrl']);
+    request.flush('500 error', { status: 500, statusText: 'Server error' });
+  });
 });
