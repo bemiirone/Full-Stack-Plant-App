@@ -27,6 +27,11 @@ export const plantReducer = createReducer(
   on(loadPlantsSuccess, (state, { plants }) => ({ ...state, loading: false, plants })),
   on(loadPlantsFailure, (state, { error }) => ({ ...state, loading: false, error })),
 
+  // Handle the loadPlant action
+  on(loadPlants, state => ({ ...state, loading: true })),
+  on(loadPlantsSuccess, (state, { plants }) => ({ ...state, loading: false, plants })),
+  on(loadPlantsFailure, (state, { error }) => ({ ...state, loading: false, error })),
+
   // Handle the addPlant action
   on(addPlant, state => ({ ...state, loading: true })),
   on(addPlantSuccess, (state, { plant }) => ({ ...state, loading: false, plants: [...state.plants, plant] })),

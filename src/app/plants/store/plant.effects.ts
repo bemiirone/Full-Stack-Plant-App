@@ -6,9 +6,10 @@ import {
   loadPlants, loadPlantsSuccess, loadPlantsFailure,
   addPlant, addPlantSuccess, addPlantFailure,
   updatePlant, updatePlantSuccess, updatePlantFailure,
-  deletePlant, deletePlantSuccess, deletePlantFailure
+  deletePlant, deletePlantSuccess, deletePlantFailure, loadPlant
 } from './plant.actions';
 import { PlantsService } from '../plants.service';
+import { Plant } from '../plant.interface';
 
 @Injectable()
 export class PlantEffects {
@@ -20,6 +21,14 @@ export class PlantEffects {
     ofType(loadPlants),
     mergeMap(action => this.plantsService.getPlants(action.limit, action.offset).pipe(
       map((plants: any) => loadPlantsSuccess({ plants })),
+      catchError(error => of(loadPlantsFailure({ error })))
+    ))
+  ));
+
+  loadSinglePlant$ = createEffect(() => this.actions$.pipe(
+    ofType(loadPlant),
+    mergeMap(action => this.plantsService.getPlantById(action.id).pipe(
+      map((plant: Plant) => loadPlantsSuccess({ plants: [plant] })),
       catchError(error => of(loadPlantsFailure({ error })))
     ))
   ));

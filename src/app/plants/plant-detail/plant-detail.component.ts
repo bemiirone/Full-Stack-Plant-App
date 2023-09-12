@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, filter, map } from 'rxjs';
 import { Plant } from '../plant.interface';
-import { selectPlant } from '../store/plant.selectors';
+import { selectPlantById } from '../store/plant.selectors';
 
 @Component({
   selector: 'app-plant-detail',
@@ -18,8 +18,8 @@ export class PlantDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')!;
-    this.plant$ = this.store.select(selectPlant, { id }).pipe(
-      filter((plant: Plant | undefined): plant is Plant => !!plant)
+    this.plant$ = this.store.select<Plant | undefined>(selectPlantById, { id }).pipe(
+      filter((plant): plant is Plant => !!plant)
     );
   }
 }

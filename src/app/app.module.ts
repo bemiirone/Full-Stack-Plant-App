@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { PlantsResolverService } from './plants/plants-resolver.service';
 import { UserResolverService } from './users/user.resolver.service';
+import { PlantResolverService } from './plants/plant.resolver.service';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { UserResolverService } from './users/user.resolver.service';
   ],
   providers: [
     PlantsResolverService,
+    PlantResolverService,
     UserResolverService
   ],
   bootstrap: [AppComponent]

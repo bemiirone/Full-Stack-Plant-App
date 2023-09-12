@@ -23,7 +23,7 @@ export class PlantsService {
     return this.http.get<Plant[]>(this.apiUrl, { params });
   }
 
-  getPlant(id: number): Observable<Plant> {
+  getPlantById(id: number): Observable<Plant> {
     return this.http.get<Plant>(`${this.apiUrl}/${id}`);
   }
 

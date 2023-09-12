@@ -16,6 +16,21 @@ export const loadPlantsFailure = createAction(
   props<{ error: any }>()
 );
 
+export const loadPlant = createAction(
+  '[Plant] Load Single Plant',
+  props<{ id: number }>()
+);
+
+export const loadPlantSuccess = createAction(
+  '[Plant] Load Single Plant Success',
+  props<{ plant: Plant }>()
+);
+
+export const loadPlantFailure = createAction(
+  '[Plant] Load Single Plant Failure',
+  props<{ error: any }>()
+);
+
 export const addPlant = createAction(
   '[Plant] Add Plant',
   props<{ plant: Plant }>()

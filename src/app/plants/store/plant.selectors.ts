@@ -12,7 +12,7 @@ export const selectPlants = createSelector(
 );
 
 // Select a specific plant by ID from the plants state
-export const selectPlant = createSelector(
+export const selectPlantById = createSelector(
   selectPlantState,
   (state: PlantState, props: { id: number }) => state.plants.find(plant => plant.id === props.id)
 );
