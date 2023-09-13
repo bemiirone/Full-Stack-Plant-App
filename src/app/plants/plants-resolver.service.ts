@@ -19,7 +19,6 @@ import { loadPlantsSuccess } from './store/plant.actions';
 })
 export class PlantsResolverService implements Resolve<Plant[]> {
   constructor(private store: Store, private plantsService: PlantsService) {
-    console.log('PlantsResolverService created');
   }
 
   resolve(
@@ -28,7 +27,6 @@ export class PlantsResolverService implements Resolve<Plant[]> {
   ): Observable<Plant[]> {
     return this.store.select(selectPlants).pipe(
       take(1),
-      tap((plants) => console.log('plants', plants)),
       switchMap((plants) => {
         if (plants && plants.length > 0) {
           return of(plants);

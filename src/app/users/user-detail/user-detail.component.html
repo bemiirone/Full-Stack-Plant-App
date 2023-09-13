@@ -1,7 +1,7 @@
-<div class="p-4">
+<div class="py-4">
   <div *ngIf="user$ | async as user" class="mb-4">
     <img [src]="user.picture_url" alt="{{ user.name }}" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-    <h2 class="text-xl font-bold text-center">{{ user.name }}</h2>
+    <h2 class="text-2xl font-bold text-center">{{ user.name }}</h2>
   </div>
   <ng-container *ngIf="plants$ | async as plants"> 
     <h3 class="text-xl font-bold mb-4 text-center"> Plant collection</h3>

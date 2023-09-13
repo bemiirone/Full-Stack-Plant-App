@@ -14,11 +14,13 @@ import { UsersModule } from './users/users.module';
 import { PlantsResolverService } from './plants/plants-resolver.service';
 import { UserResolverService } from './users/user.resolver.service';
 import { PlantResolverService } from './plants/plant.resolver.service';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
