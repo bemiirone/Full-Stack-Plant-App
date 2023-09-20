@@ -7,12 +7,17 @@ import * as bcrypt from 'bcrypt';
 import { User } from './user.schema';
 import { CreateUserDto, UpdateUserDto } from './dto/user.dto';
 
+
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+    const result: any = await this.userModel.find().exec();
+    if (result.length && result[0]._doc && result[0]._doc.data) {
+      return result[0]._doc.data;
+    }
+    return [];
   }
 
   async findOne(id: string): Promise<User> {
@@ -37,3 +42,4 @@ export class UsersService {
     return result != null;
   }
 }
+
