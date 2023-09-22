@@ -2,7 +2,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreatePlantDto, UpdatePlantDto } from './dto/plants.dto';
 import { Plant } from './schema/plant.schema';
 
@@ -10,12 +10,20 @@ import { Plant } from './schema/plant.schema';
 export class PlantsService {
   constructor(@InjectModel(Plant.name) private plantModel: Model<Plant>) {}
 
-  async findAll(): Promise<Plant[]> {
-    return this.plantModel.find().exec();
-  }
+  async findAll(limit?: number, offset?: number): Promise<Plant[]> {
+    let query = this.plantModel.find();
+    if (limit !== undefined) {
+        query = query.limit(limit);
+    }
+    if (offset !== undefined) {
+        query = query.skip(offset);
+    }
+    return query.exec();
+}
 
   async findOne(id: string): Promise<Plant> {
-    return this.plantModel.findById(id).exec();
+    const objectId = new Types.ObjectId(id);
+    return this.plantModel.findById(objectId).exec();
   }
 
   async create(createPlantDto: CreatePlantDto): Promise<Plant> {

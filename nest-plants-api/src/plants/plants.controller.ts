@@ -7,7 +7,8 @@ import {
   Get,
   Param,
   Post,
-  Put
+  Put,
+  Query
 } from '@nestjs/common';
 import { CreatePlantDto, UpdatePlantDto } from './dto/plants.dto';
 import { PlantsService } from './plants.service';
@@ -17,8 +18,13 @@ export class PlantsController {
   constructor(private readonly plantsService: PlantsService) {}
 
   @Get('/plants')
-  findAll() {
-    return this.plantsService.findAll();
+  findAll(
+    @Query('limit') limitQuery: string,
+    @Query('offset') offsetQuery: string
+  ) {
+    const limit = limitQuery ? parseInt(limitQuery) : undefined;
+    const offset = parseInt(offsetQuery) || 0;
+    return this.plantsService.findAll(limit, offset);
   }
 
   @Get('/plants/:id')
