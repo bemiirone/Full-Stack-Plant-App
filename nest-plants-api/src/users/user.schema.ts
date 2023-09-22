@@ -1,12 +1,10 @@
-// user.schema.ts
-
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema()
 export class User extends Document {
-  @Prop()
-  id: number;
+  @Prop({ type: Types.ObjectId, required: true, auto: true })
+  _id: Types.ObjectId;
 
   @Prop()
   name: string;
