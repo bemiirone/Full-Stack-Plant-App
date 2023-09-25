@@ -3,7 +3,7 @@ import {
   loadPlants, loadPlantsSuccess, loadPlantsFailure,
   addPlant, addPlantSuccess, addPlantFailure,
   updatePlant, updatePlantSuccess, updatePlantFailure,
-  deletePlant, deletePlantSuccess, deletePlantFailure
+  deletePlant, deletePlantSuccess, deletePlantFailure, loadPlant, loadPlantFailure, loadPlantSuccess
 } from './plant.actions';
 import { Plant } from '../plant.interface';
 
@@ -27,10 +27,10 @@ export const plantReducer = createReducer(
   on(loadPlantsSuccess, (state, { plants }) => ({ ...state, loading: false, plants })),
   on(loadPlantsFailure, (state, { error }) => ({ ...state, loading: false, error })),
 
-  // Handle the loadPlant action
-  on(loadPlants, state => ({ ...state, loading: true })),
-  on(loadPlantsSuccess, (state, { plants }) => ({ ...state, loading: false, plants })),
-  on(loadPlantsFailure, (state, { error }) => ({ ...state, loading: false, error })),
+  // Handle the Single loadPlant action
+  on(loadPlant, state => ({ ...state, loading: true })),
+  on(loadPlantSuccess, (state, { plant }) => ({ ...state, loading: false, plant })),
+  on(loadPlantFailure, (state, { error }) => ({ ...state, loading: false, error })),
 
   // Handle the addPlant action
   on(addPlant, state => ({ ...state, loading: true })),

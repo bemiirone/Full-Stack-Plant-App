@@ -22,26 +22,27 @@ export class PlantResolverService implements Resolve<Plant> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plant> {
-    const plantId = +route.params['id'];
-
-    return this.store.select(selectPlantById, { id: plantId }).pipe(
-      take(1),
+    const _id = route.params['id'];
+  
+    return this.store.select(selectPlantById, { _id }).pipe(
       tap(plant => {
         if (!plant) {
-          this.store.dispatch(loadPlant({ id: plantId }));
+          this.store.dispatch(loadPlant({ id: _id }));
         }
       }),
       switchMap(plant => {
         if (plant) {
           return of(plant);
         }
-        return this.plantsService.getPlantById(plantId).pipe(
+        return this.plantsService.getPlantById(_id).pipe(
           catchError(err => {
             console.error('Error fetching plant:', err);
             return throwError(err);
           })
         );
-      })
+      }),
+      take(1)
     );
   }
+  
 }

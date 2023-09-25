@@ -6,7 +6,7 @@ import {
   loadPlants, loadPlantsSuccess, loadPlantsFailure,
   addPlant, addPlantSuccess, addPlantFailure,
   updatePlant, updatePlantSuccess, updatePlantFailure,
-  deletePlant, deletePlantSuccess, deletePlantFailure, loadPlant
+  deletePlant, deletePlantSuccess, deletePlantFailure, loadPlant, loadPlantSuccess
 } from './plant.actions';
 import { PlantsService } from '../plants.service';
 import { Plant } from '../plant.interface';
@@ -28,7 +28,7 @@ export class PlantEffects {
   loadSinglePlant$ = createEffect(() => this.actions$.pipe(
     ofType(loadPlant),
     mergeMap(action => this.plantsService.getPlantById(action.id).pipe(
-      map((plant: Plant) => loadPlantsSuccess({ plants: [plant] })),
+      map((plant: Plant) => loadPlantSuccess({ plant })),
       catchError(error => of(loadPlantsFailure({ error })))
     ))
   ));

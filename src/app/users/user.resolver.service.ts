@@ -31,7 +31,7 @@ export class UserResolverService implements Resolve<User> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<User> {
-    const userId = +route.params['id'];
+    const userId = route.params['id'];
 
     return this.store.select(selectUserById, { id: userId }).pipe(
       take(1),

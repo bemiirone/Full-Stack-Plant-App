@@ -11,7 +11,7 @@ export const selectUsers = createSelector(
 
 export const selectUserById = createSelector(
   selectUsers,
-  (users: User[], props: { id: number }) => users.find(user => user.id === props.id)
+  (users: User[], props: { id: string }) => users.find(user => user.id === props.id)
 );
 
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable, filter, map } from 'rxjs';
+import { Observable, of, } from 'rxjs';
 import { Plant } from '../plant.interface';
-import { selectPlantById } from '../store/plant.selectors';
+import { ResolvedData } from 'src/app/resolved-data';
 
 @Component({
   selector: 'app-plant-detail',
@@ -14,12 +13,10 @@ export class PlantDetailComponent implements OnInit {
 
   plant$: Observable<Plant>;
 
-  constructor(private route: ActivatedRoute, private store: Store) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')!;
-    this.plant$ = this.store.select<Plant | undefined>(selectPlantById, { id }).pipe(
-      filter((plant): plant is Plant => !!plant)
-    );
+    const resolvedData: ResolvedData = this.route.snapshot.data as ResolvedData;
+    this.plant$ = of(resolvedData.plant);
   }
 }

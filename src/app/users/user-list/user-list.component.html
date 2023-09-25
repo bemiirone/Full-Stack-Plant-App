@@ -3,7 +3,7 @@
   <h1 class="text-xl font-bold mb-4">Users List</h1>
   <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <li *ngFor="let user of users" class="bg-white rounded-lg shadow p-4">
-      <a [routerLink]="['/users', user.id]">
+      <a [routerLink]="['/users', user._id]">
         <img [src]="user.picture_url" alt="{{ user.name }}" class="w-32 h-32 object-cover rounded-lg mb-4" />
         <h2 class="text-xl font-bold">{{ user.name }}</h2>
       </a>
