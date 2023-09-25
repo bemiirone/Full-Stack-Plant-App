@@ -27,7 +27,7 @@ describe('UserService', () => {
   it('should retrieve all users via GET', () => {
     const dummyUsers = [
       {
-        id: 1,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
         name: 'John Doe',
         email: 'john.doe@example.com',
         picture_url: 'http://example.com/john.jpg',
@@ -36,7 +36,7 @@ describe('UserService', () => {
         plant_id: [101, 102]
       },
       {
-        id: 2,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1c',
         name: 'Jane Doe',
         email: 'jane.doe@example.com',
         picture_url: 'http://example.com/john.jpg',
@@ -58,7 +58,7 @@ describe('UserService', () => {
 
   it('should retrieve a user by id via GET', () => {
     const dummyUser = {
-      id: 1,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       name: 'John Doe',
       email: 'john.doe@example.com',
       picture_url: 'http://example.com/john.jpg',
@@ -67,11 +67,11 @@ describe('UserService', () => {
       plant_id: [101, 102]
     };
 
-    service.getUserById(1).subscribe(user => {
+    service.getUserById('5f9d5f3b9d3f2b1b1c9b4b1b').subscribe(user => {
       expect(user).toEqual(dummyUser);
     });
 
-    const request = httpMock.expectOne(`${service['apiUrl']}/1`);
+    const request = httpMock.expectOne(`${service['apiUrl']}/5f9d5f3b9d3f2b1b1c9b4b1b`);
     expect(request.request.method).toBe('GET');
     request.flush(dummyUser);
   });

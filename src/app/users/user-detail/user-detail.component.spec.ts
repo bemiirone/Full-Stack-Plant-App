@@ -36,7 +36,7 @@ describe('UserDetailComponent', () => {
 
   it('should set user$ based on route resolved data', () => {
     const mockUser: User = {
-      id: 1,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       name: 'Test User',
       email: 'ded@iii',
       picture_url: 'https://via.placeholder.com/150',
@@ -56,7 +56,7 @@ describe('UserDetailComponent', () => {
 
   it('should set plants$ based on user plant_id and resolved plants data', () => {
     const mockUser: User = {
-      id: 1,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       name: 'Test User',
       email: 'ded@iii',
       picture_url: 'https://via.placeholder.com/150',

@@ -1,47 +1,46 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { PlantDetailComponent } from './plant-detail.component';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
+
+import { PlantDetailComponent } from './plant-detail.component';
 import { Plant } from '../plant.interface';
 
 describe('PlantDetailComponent', () => {
   let component: PlantDetailComponent;
   let fixture: ComponentFixture<PlantDetailComponent>;
-  let store: Store;
+
+  // Mock plant data
   const mockPlant: Plant = {
+    _id: '650d5bbf9462f820628d6cda',
     id: 1,
-    name: 'Test Plant',
-    family: 'Testaceae',
-    year: 2020,
-    slug: 'test-plant',
-    image: 'test.jpg',
+    name: 'Evergreen oak',
+    family: 'Quercus',
+    image: 'https://example.com/image.jpg',
+    year: 1785,
+    slug: 'quercus-rotundifolia'
   };
 
-  const storeMock = {
-    select: jasmine.createSpy('select').and.returnValue(of(mockPlant)),
-  };
-
-  const activatedRouteMock = {
+  // Mock ActivatedRoute data
+  const mockActivatedRoute = {
     snapshot: {
-      paramMap: {
-        get: jasmine.createSpy('get').and.returnValue('1'), // return '1' for the 'id' parameter
-      },
-    },
+      data: {
+        plant: mockPlant
+      }
+    }
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlantDetailComponent],
       providers: [
-        { provide: Store, useValue: storeMock },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-      ],
+        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+      ]
     }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(PlantDetailComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
     fixture.detectChanges();
   });
 
@@ -49,8 +48,10 @@ describe('PlantDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should retrieve the id from the route and select the plant from the store', () => {
-    expect(activatedRouteMock.snapshot.paramMap.get).toHaveBeenCalledWith('id');
-    expect(store.select).toHaveBeenCalled();
+  it('should initialize plant$ based on route resolved data', (done) => {
+    component.plant$.subscribe(plant => {
+      expect(plant).toEqual(mockPlant);
+      done();
+    });
   });
 });

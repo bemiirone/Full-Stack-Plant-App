@@ -27,7 +27,7 @@ export class PlantResolverService implements Resolve<Plant> {
     return this.store.select(selectPlantById, { _id }).pipe(
       tap(plant => {
         if (!plant) {
-          this.store.dispatch(loadPlant({ id: _id }));
+          this.store.dispatch(loadPlant({ _id }));
         }
       }),
       switchMap(plant => {

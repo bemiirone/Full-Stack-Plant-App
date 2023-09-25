@@ -60,6 +60,7 @@ describe('PlantsService', () => {
 
   it('should retrieve a single plant by id', () => {
     const dummyPlant: Plant = {
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       id: 1,
       name: 'Test',
       family: 'Testaceae',
@@ -68,11 +69,11 @@ describe('PlantsService', () => {
       image: 'test.jpg',
     };
 
-    service.getPlantById(1).subscribe((plant) => {
+    service.getPlantById('5f9d5f3b9d3f2b1b1c9b4b1b').subscribe((plant) => {
       expect(plant).toEqual(dummyPlant);
     });
 
-    const req = httpMock.expectOne(`${service['apiUrl']}/1`);
+    const req = httpMock.expectOne(`${service['apiUrl']}/5f9d5f3b9d3f2b1b1c9b4b1b`);
     expect(req.request.method).toBe('GET');
     req.flush(dummyPlant);
   });

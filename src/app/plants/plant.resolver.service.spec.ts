@@ -10,6 +10,7 @@ describe('PlantResolverService', () => {
   let resolver: PlantResolverService;
   const mockPlant: Plant = {
     id: 1,
+    _id: '1',
     name: 'Plant A',
     family: 'Family A',
     image: 'image-url',
@@ -52,7 +53,7 @@ describe('PlantResolverService', () => {
 
     resolver.resolve({ params: { id: '1' } } as any, {} as any).subscribe();
 
-    expect(mockStore.dispatch).toHaveBeenCalledWith(loadPlant({ id: 1 }));
+    expect(mockStore.dispatch).toHaveBeenCalledWith(loadPlant({ _id: '1' }));
   });
 
   it('should fetch plant from API if not in store and API call is successful', (done) => {

@@ -18,7 +18,7 @@ export const loadPlantsFailure = createAction(
 
 export const loadPlant = createAction(
   '[Plant] Load Single Plant',
-  props<{ id: string }>()
+  props<{ _id: string }>()
 );
 
 export const loadPlantSuccess = createAction(

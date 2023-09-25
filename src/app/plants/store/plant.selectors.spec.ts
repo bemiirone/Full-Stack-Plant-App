@@ -4,8 +4,8 @@ import * as fromPlantSelectors from './plant.selectors';
 describe('PlantSelectors', () => {
     const initialState: PlantState = {
         plants: [
-            { id: 1, name: 'Rose', family: 'Rosaceae', year: 2000, slug: 'rose', image: 'rose.jpg' },
-            { id: 2, name: 'Tulip', family: 'Liliaceae', year: 2005, slug: 'tulip', image: 'tulip.jpg' },
+            { _id: 'test1', id: 1, name: 'Rose', family: 'Rosaceae', year: 2000, slug: 'rose', image: 'rose.jpg' },
+            { _id: 'test2', id: 2, name: 'Tulip', family: 'Liliaceae', year: 2005, slug: 'tulip', image: 'tulip.jpg' },
         ],
         loading: false,
         error: null,
@@ -27,7 +27,7 @@ describe('PlantSelectors', () => {
 
     describe('selectPlant', () => {
       it('should return a single plant based on its ID', () => {
-          const result = fromPlantSelectors.selectPlantById.projector(initialState, { id: 1 });
+          const result = fromPlantSelectors.selectPlantById.projector(initialState, { _id: 'test1' });
           expect(result).toEqual(initialState.plants[0]);
       });
   });
