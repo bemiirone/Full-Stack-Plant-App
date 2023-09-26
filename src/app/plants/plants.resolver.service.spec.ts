@@ -10,6 +10,7 @@ import { loadPlantsSuccess } from './store/plant.actions';
 const mockPlants: Plant[] = [
   {
     id: 1,
+    _id: '1',
     name: 'Plant A',
     family: 'Family A',
     image: 'image-url',
@@ -17,6 +18,7 @@ const mockPlants: Plant[] = [
   },
   {
     id: 2,
+    _id: '2',
     name: 'Plant B',
     family: 'Family B',
     image: 'image-url',
@@ -24,6 +26,7 @@ const mockPlants: Plant[] = [
   },
   {
     id: 3,
+    _id: '3',
     name: 'Plant C',
     family: 'Family C',
     image: 'image-url',

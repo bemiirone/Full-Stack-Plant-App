@@ -31,7 +31,7 @@ describe('PlantEffects', () => {
   });
 
   it('should dispatch loadPlantsSuccess on successful load', () => {
-    const mockPlants = [{ id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
+    const mockPlants = [{ id: 1, _id: '1', name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
     plantsService.getPlants.and.returnValue(of(mockPlants));
 
     actions$ = of(loadPlants({ limit: 10, offset: 0 }));
@@ -53,7 +53,7 @@ describe('PlantEffects', () => {
 
   describe('loadPlants$', () => {
     it('should dispatch loadPlantsSuccess on successful load', () => {
-      const mockPlants = [{ id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
+      const mockPlants = [{ id: 1, _id: '2', name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' }];
       plantsService.getPlants.and.returnValue(of(mockPlants));
 
       actions$ = of(loadPlants({ limit: 10, offset: 0 }));
@@ -76,7 +76,7 @@ describe('PlantEffects', () => {
 
   describe('addPlant$', () => {
     it('should dispatch addPlantSuccess on successful addition', () => {
-      const mockPlant = { id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
+      const mockPlant = { id: 1, _id: '1', name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
       plantsService.addPlant.and.returnValue(of(mockPlant));
 
       actions$ = of(addPlant({ plant: mockPlant }));
@@ -87,7 +87,7 @@ describe('PlantEffects', () => {
     });
 
     it('should dispatch addPlantFailure on error', () => {
-      const mockPlant = { id: 1, name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
+      const mockPlant = { id: 1, _id: '2', name: 'Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
       plantsService.addPlant.and.returnValue(throwError('error'));
 
       actions$ = of(addPlant({ plant: mockPlant }));
@@ -100,7 +100,7 @@ describe('PlantEffects', () => {
 
   describe('updatePlant$', () => {
     it('should dispatch updatePlantSuccess on successful update', () => {
-      const mockPlant = { id: 1, name: 'Updated Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
+      const mockPlant = { id: 1, _id: '1', name: 'Updated Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
       plantsService.updatePlant.and.returnValue(of(mockPlant));
 
       actions$ = of(updatePlant({ plant: mockPlant }));
@@ -111,7 +111,7 @@ describe('PlantEffects', () => {
     });
 
     it('should dispatch updatePlantFailure on error', () => {
-      const mockPlant = { id: 1, name: 'Updated Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
+      const mockPlant = { id: 1, _id: '1', name: 'Updated Test', family: 'Testaceae', year: 2020, slug: 'test', image: 'test.jpg' };
       plantsService.updatePlant.and.returnValue(throwError('error'));
 
       actions$ = of(updatePlant({ plant: mockPlant }));
@@ -124,7 +124,7 @@ describe('PlantEffects', () => {
 
   describe('deletePlant$', () => {
     it('should dispatch deletePlantSuccess on successful delete', () => {
-      const mockId = 1;
+      const mockId = '1';
       plantsService.deletePlant.and.returnValue(of(undefined));
 
       actions$ = of(deletePlant({ id: mockId }));
@@ -135,7 +135,7 @@ describe('PlantEffects', () => {
     });
 
     it('should dispatch deletePlantFailure on error', () => {
-      const mockId = 1;
+      const mockId = '1';
       plantsService.deletePlant.and.returnValue(throwError('error'));
 
       actions$ = of(deletePlant({ id: mockId }));

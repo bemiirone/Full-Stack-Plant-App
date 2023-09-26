@@ -32,6 +32,7 @@ describe('PlantsService', () => {
     const dummyPlants: Plant[] = [
       {
         id: 1,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
         name: 'Test',
         family: 'Testaceae',
         year: 2020,
@@ -40,6 +41,7 @@ describe('PlantsService', () => {
       },
       {
         id: 2,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1c',
         name: 'Test 2',
         family: 'Testaceae 2',
         year: 2021,
@@ -81,6 +83,7 @@ describe('PlantsService', () => {
   it('should add a new plant via POST', () => {
     const newPlant: Plant = {
       id: 3,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1c',
       name: 'Test 3',
       family: 'Testaceae 3',
       year: 2022,
@@ -100,6 +103,7 @@ describe('PlantsService', () => {
   it('should update an existing plant via PUT', () => {
     const updatedPlant: Plant = {
       id: 1,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       name: 'Updated',
       family: 'Updatedaceae',
       year: 2020,
@@ -111,13 +115,13 @@ describe('PlantsService', () => {
       expect(plant).toEqual(updatedPlant);
     });
 
-    const req = httpMock.expectOne(`${service['apiUrl']}/${updatedPlant.id}`);
+    const req = httpMock.expectOne(`${service['apiUrl']}/${updatedPlant._id}`);
     expect(req.request.method).toBe('PUT');
     req.flush(updatedPlant);
   });
 
   it('should delete a plant by its id via DELETE', () => {
-    const plantId = 1;
+    const plantId = '1';
 
     service.deletePlant(plantId).subscribe();
 

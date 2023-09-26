@@ -39,6 +39,7 @@ describe('PlantReducer', () => {
       const plants = [
         {
           id: 1,
+          _id: '1',
           name: 'A',
           family: 'B',
           year: 2000,
@@ -69,6 +70,7 @@ describe('PlantReducer', () => {
     it('should add a plant', () => {
       const plant: Plant = {
         id: 1,
+        _id: '1',
         name: 'A',
         family: 'B',
         year: 2000,
@@ -98,6 +100,7 @@ describe('PlantReducer', () => {
     it('should update a plant', () => {
       const plant: Plant = {
         id: 1,
+        _id: '1',
         name: 'A',
         family: 'B',
         year: 2000,
@@ -131,13 +134,14 @@ describe('PlantReducer', () => {
     it('should delete a plant', () => {
       const plant: Plant = {
         id: 1,
+        _id: '1',
         name: 'A',
         family: 'B',
         year: 2000,
         slug: 'a',
         image: 'test.jpg',
       };
-      const action = deletePlantSuccess({ id: 1 });
+      const action = deletePlantSuccess({ id: '1' });
       const result = reducer(
         { ...initialState, plants: [plant], loading: true },
         action

@@ -10,7 +10,7 @@ describe('PlantFormComponent', () => {
     close: jasmine.createSpy('close')
   };
   const mockPlant = {
-    id: 1,
+    _id: '1',
     name: 'Test Plant',
     family: 'Testaceae',
     year: 2020,
@@ -31,6 +31,7 @@ describe('PlantFormComponent', () => {
     fixture = TestBed.createComponent(PlantFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    mockDialogRef.close.calls.reset();
   });
 
   it('should create', () => {
@@ -38,9 +39,14 @@ describe('PlantFormComponent', () => {
   });
 
   it('should populate form if plant data is provided', () => {
-    const expectedFormData = { ...mockPlant };
-    const {id, ...rest} = expectedFormData
-    expect(component.form.value).toEqual(rest);
+    const expectedFormData = {
+        name: mockPlant.name,
+        family: mockPlant.family,
+        year: mockPlant.year,
+        slug: mockPlant.slug,
+        image: mockPlant.image
+    };
+    expect(component.form.value).toEqual(expectedFormData);
 });
 
   it('should have default validation rules', () => {
@@ -51,9 +57,15 @@ describe('PlantFormComponent', () => {
 
   it('should close dialog with plant data if form is valid', () => {
     component.onSubmit();
-    expect(mockDialogRef.close).toHaveBeenCalledWith(mockPlant);
-  });
-
+    const expectedData = {
+        name: mockPlant.name,
+        family: mockPlant.family,
+        year: mockPlant.year,
+        slug: mockPlant.slug,
+        image: mockPlant.image
+    };
+    expect(mockDialogRef.close).toHaveBeenCalledWith(expectedData);
+});
 
   it('should close dialog without emitting data on closeDialog', () => {
     component.closeDialog();

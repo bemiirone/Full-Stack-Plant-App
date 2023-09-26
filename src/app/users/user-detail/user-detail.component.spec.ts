@@ -67,6 +67,7 @@ describe('UserDetailComponent', () => {
     const mockPlants: Plant[] = [
       {
         id: 1,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
         name: 'Rose',
         family: 'Rosaceae',
         image: 'https://example.com/images/rose.jpg',
@@ -74,6 +75,7 @@ describe('UserDetailComponent', () => {
       },
       {
         id: 2,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
         name: 'Lily',
         family: 'Liliaceae',
         image: 'https://example.com/images/lily.jpg',
@@ -81,6 +83,7 @@ describe('UserDetailComponent', () => {
       },
       {
         id: 3,
+        _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
         name: 'Orchid',
         family: 'Orchidaceae',
         image: 'https://example.com/images/orchid.jpg',

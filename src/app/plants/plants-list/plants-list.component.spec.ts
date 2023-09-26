@@ -71,6 +71,7 @@ describe('PlantsListComponent', () => {
   it('should open dialog and dispatch updatePlant on editPlant', () => {
     const mockPlant: Plant = {
       id: 1,
+      _id: '5f9d5f3b9d3f2b1b1c9b4b1b',
       name: 'Test Plant',
       family: 'Testaceae',
       year: 2020,
@@ -103,9 +104,9 @@ describe('PlantsListComponent', () => {
     dialog = TestBed.inject(MatDialog);
     fixture.detectChanges();
 
-    component.deletePlant(1);
+    component.deletePlant('1');
     expect(dialog.open).toHaveBeenCalled();
-    expect(store.dispatch).toHaveBeenCalledWith(deletePlant({ id: 1 }));
+    expect(store.dispatch).toHaveBeenCalledWith(deletePlant({ id: '1' }));
   });
 
   it('should open confirmation dialog, cancel, and not dispatch deletePlant', async () => {
@@ -122,8 +123,8 @@ describe('PlantsListComponent', () => {
     dialog = TestBed.inject(MatDialog);
     fixture.detectChanges();
 
-    component.deletePlant(1);
+    component.deletePlant('1');
     expect(dialog.open).toHaveBeenCalled();
-    expect(store.dispatch).not.toHaveBeenCalledWith(deletePlant({ id: 1 }));
+    expect(store.dispatch).not.toHaveBeenCalledWith(deletePlant({ id: '1' }));
   });
 });
