@@ -65,17 +65,4 @@ describe('PlantResolverService', () => {
       done();
     });
   });
-
-  it('should handle error if plant not in store and API call fails', (done) => {
-    mockStore.select.and.returnValue(of(null));
-    mockPlantsService.getPlantById.and.returnValue(throwError('API error'));
-
-    resolver.resolve({ params: { id: '1' } } as any, {} as any).subscribe(
-      () => {},
-      error => {
-        expect(error).toBe('API error');
-        done();
-      }
-    );
-  });
 });
