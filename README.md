@@ -12,7 +12,7 @@ The Plants app is a single-page MEAN application that provides functionality to 
 - **Dialog Modals**: Used for Add, Edit and Delete operations.
 - **Pagination**: For easier navigation of the plants list
 
-## Libraries and Tools
+## Frontend Libraries and Tools
 
 - **Angular 16**: The primary framework used for building the application.
 - **TypeScript**: The building bocks for this app.
