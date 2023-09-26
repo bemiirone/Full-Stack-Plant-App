@@ -1,6 +1,6 @@
 # Plants App
 
-The Plants app is a single-page application that provides functionality to manage and display a collection of plants.
+The Plants app is a single-page MEAN application that provides functionality to manage and display a collection of plants.
 
 ## Features
 
@@ -23,13 +23,16 @@ The Plants app is a single-page application that provides functionality to manag
 - **Jasmine & Karma**: For writing and running unit tests.
 
 ## Backend
+- **Node**: The server-side Javascript environment.
+- **Express**: Module used to create the REST api.
+- **NestJs**: For TypeScript implementation.
+- **Mongo**: NoSql database used to store the data.
 
-The app communicates with a backend server that provides CRUD operations for the plants. This server is built using `Express.js` and serves data from a static JSON file.
 
 ## Instructions
 
 1. Clone repo.
-2. Navigate to the api folder. Run `npm install` and then `npm start`. This will start the api server
-3. Navigate to root folder and repeat above npm steps.
+2. Navigate to the nest-plants-api folder. Run `npm install` and then `npm run start:dev`. This will start the api server
+3. Navigate to root folder.  Run `npm install` and then `npm start`.
 4. Navigate to http://localhost:4200/ in your browser
 
