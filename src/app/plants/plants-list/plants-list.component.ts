@@ -71,7 +71,7 @@ export class PlantsListComponent implements OnInit {
     });
   }
 
-  deletePlant(id: number): void {
+  deletePlant(id: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: 'Are you sure you want to delete this plant?',

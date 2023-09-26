@@ -51,7 +51,7 @@ export const plantReducer = createReducer(
   on(deletePlantSuccess, (state, { id }) => ({
     ...state,
     loading: false,
-    plants: state.plants.filter(p => p.id !== id)
+    plants: state.plants.filter(p => p._id !== id)
   })),
   on(deletePlantFailure, (state, { error }) => ({ ...state, loading: false, error }))
 );

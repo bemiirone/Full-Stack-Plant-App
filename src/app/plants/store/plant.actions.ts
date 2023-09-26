@@ -63,12 +63,12 @@ export const updatePlantFailure = createAction(
 
 export const deletePlant = createAction(
   '[Plant] Delete Plant',
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 
 export const deletePlantSuccess = createAction(
   '[Plant] Delete Plant Success',
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 
 export const deletePlantFailure = createAction(
