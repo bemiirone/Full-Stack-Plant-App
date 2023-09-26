@@ -65,6 +65,7 @@ export class PlantsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Plant) => {
       if (result) {
+        result = { ...result, _id: plant._id };
         this.store.dispatch(updatePlant({ plant: result }));
       }
     });

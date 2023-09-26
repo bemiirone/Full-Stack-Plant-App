@@ -32,7 +32,7 @@ export class PlantsService {
   }
 
   updatePlant(plant: Plant): Observable<Plant> {
-    return this.http.put<Plant>(`${this.apiUrl}/${plant.id}`, plant);
+    return this.http.put<Plant>(`${this.apiUrl}/${plant._id}`, plant);
   }
 
   deletePlant(id: number): Observable<void> {

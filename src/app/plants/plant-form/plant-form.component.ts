@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Plant } from '../plant.interface';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 interface DialogData {
   plant: Plant | null;
@@ -34,7 +35,6 @@ export class PlantFormComponent {
   onSubmit() {
     if (this.form.valid) {
       const newPlant: Plant = {
-        id: this.plant ? this.plant.id : 0,
         ...this.form.value,
       };
 

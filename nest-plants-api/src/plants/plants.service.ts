@@ -27,9 +27,13 @@ export class PlantsService {
   }
 
   async create(createPlantDto: CreatePlantDto): Promise<Plant> {
-    const createdPlant = new this.plantModel(createPlantDto);
-    return createdPlant.save();
+    const lastPlant = await this.plantModel.findOne().sort('-id').exec();
+    const nextId = lastPlant ? lastPlant.id + 1 : 1;
+    createPlantDto.id = nextId;
+    const newPlant = new this.plantModel(createPlantDto);
+    return newPlant.save();
   }
+  
 
   async update(id: string, updatePlantDto: UpdatePlantDto): Promise<Plant> {
     return this.plantModel.findByIdAndUpdate(id, updatePlantDto, {
