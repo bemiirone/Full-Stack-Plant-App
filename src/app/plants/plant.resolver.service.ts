@@ -7,10 +7,10 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { take, switchMap, catchError, tap, filter } from 'rxjs/operators';
-import { Plant } from './plant.interface'; // Adjust path if necessary
-import { PlantsService } from './plants.service'; // Adjust path if necessary
-import { loadPlant } from './store/plant.actions'; // Adjust path if necessary
-import { selectPlantById } from './store/plant.selectors'; // Adjust path if necessary
+import { Plant } from './plant.interface'; 
+import { PlantsService } from './plants.service'; 
+import { loadPlant } from './store/plant.actions'; 
+import { selectPlantById } from './store/plant.selectors'; 
 
 @Injectable({
   providedIn: 'root',
