@@ -39,6 +39,7 @@ testem.log
 package-lock.json
 angular.json
 api/node_modules
+src/environments
 
 # System files
 .DS_Store
